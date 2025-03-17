@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>R6Siege-2D Placeholder Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .canvas-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    canvas {
+      border: 1px solid #000;
+      margin-right: 20px;
+    }
+    button {
+      padding: 5px 10px;
+      margin-right: 10px;
+    }
+    h2 {
+      margin-top: 30px;
+    }
+    .instructions {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>R6Siege-2D Placeholder Generator</h1>
+  
+  <div class="instructions">
+    <h3>Instructions:</h3>
+    <ol>
+      <li>Click the "Generate" button for each asset</li>
+      <li>Right-click on the canvas and select "Save Image As..."</li>
+      <li>Save the image with the filename shown</li>
+      <li>Place the image in the correct folder in your project</li>
+    </ol>
+  </div>
+
+  <h2>Characters</h2>
+  <div class="canvas-container">
+    <canvas id="player" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateCircle('player', '#ff0000')">Generate</button>
+      <span>Save as: <code>public/assets/images/characters/player.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="enemy" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateCircle('enemy', '#0000ff')">Generate</button>
+      <span>Save as: <code>public/assets/images/characters/enemy.png</code></span>
+    </div>
+  </div>
+
+  <h2>Tiles</h2>
+  <div class="canvas-container">
+    <canvas id="floor" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateSquare('floor', '#aaaaaa')">Generate</button>
+      <span>Save as: <code>public/assets/images/tiles/floor.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="wall" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateSquare('wall', '#555555')">Generate</button>
+      <span>Save as: <code>public/assets/images/tiles/wall.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="destructible-wall" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateSquare('destructible-wall', '#8B4513')">Generate</button>
+      <span>Save as: <code>public/assets/images/tiles/destructible-wall.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="reinforced-wall" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateSquare('reinforced-wall', '#000066')">Generate</button>
+      <span>Save as: <code>public/assets/images/tiles/reinforced-wall.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="furniture" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateSquare('furniture', '#D2B48C')">Generate</button>
+      <span>Save as: <code>public/assets/images/tiles/furniture.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="window" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateWindow('window')">Generate</button>
+      <span>Save as: <code>public/assets/images/tiles/window.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="vent" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateVent('vent')">Generate</button>
+      <span>Save as: <code>public/assets/images/tiles/vent.png</code></span>
+    </div>
+  </div>
+
+  <h2>Weapons</h2>
+  <div class="canvas-container">
+    <canvas id="bullet" width="16" height="16"></canvas>
+    <div>
+      <button onclick="generateCircle('bullet', '#ffff00', 4)">Generate</button>
+      <span>Save as: <code>public/assets/images/weapons/bullet.png</code></span>
+    </div>
+  </div>
+
+  <h2>Gadgets</h2>
+  <div class="canvas-container">
+    <canvas id="breach-charge" width="24" height="24"></canvas>
+    <div>
+      <button onclick="generateSquare('breach-charge', '#ff6600')">Generate</button>
+      <span>Save as: <code>public/assets/images/gadgets/breach-charge.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="camera" width="24" height="24"></canvas>
+    <div>
+      <button onclick="generateCamera('camera')">Generate</button>
+      <span>Save as: <code>public/assets/images/gadgets/camera.png</code></span>
+    </div>
+  </div>
+
+  <h2>Particles</h2>
+  <div class="canvas-container">
+    <canvas id="impact" width="16" height="16"></canvas>
+    <div>
+      <button onclick="generateCircle('impact', '#ffffff', 6)">Generate</button>
+      <span>Save as: <code>public/assets/images/particles/impact.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="debris" width="16" height="16"></canvas>
+    <div>
+      <button onclick="generateSquare('debris', '#8B4513')">Generate</button>
+      <span>Save as: <code>public/assets/images/particles/debris.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="blood" width="16" height="16"></canvas>
+    <div>
+      <button onclick="generateCircle('blood', '#ff0000', 6)">Generate</button>
+      <span>Save as: <code>public/assets/images/particles/blood.png</code></span>
+    </div>
+  </div>
+
+  <h2>UI</h2>
+  <div class="canvas-container">
+    <canvas id="health-bar" width="200" height="20"></canvas>
+    <div>
+      <button onclick="generateRect('health-bar', '#00ff00', 200, 20)">Generate</button>
+      <span>Save as: <code>public/assets/images/ui/health-bar.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="ammo-icon" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateAmmoIcon('ammo-icon')">Generate</button>
+      <span>Save as: <code>public/assets/images/ui/ammo-icon.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="gadget-icon" width="32" height="32"></canvas>
+    <div>
+      <button onclick="generateSquare('gadget-icon', '#ff6600')">Generate</button>
+      <span>Save as: <code>public/assets/images/ui/gadget-icon.png</code></span>
+    </div>
+  </div>
+
+  <h2>Other</h2>
+  <div class="canvas-container">
+    <canvas id="logo" width="300" height="100"></canvas>
+    <div>
+      <button onclick="generateLogo('logo')">Generate</button>
+      <span>Save as: <code>public/assets/images/logo.png</code></span>
+    </div>
+  </div>
+  
+  <div class="canvas-container">
+    <canvas id="loading-bar" width="300" height="30"></canvas>
+    <div>
+      <button onclick="generateRect('loading-bar', '#ffffff', 300, 30)">Generate</button>
+      <span>Save as: <code>public/assets/images/loading-bar.png</code></span>
+    </div>
+  </div>
+
+  <h2>Audio Files</h2>
+  <p>For audio placeholders, you can download free sound effects from sites like <a href="https://freesound.org/" target="_blank">Freesound.org</a>:</p>
+  <ul>
+    <li><code>public/assets/audio/gunshot.mp3</code> - Short loud sound</li>
+    <li><code>public/assets/audio/reload.mp3</code> - Clicking sound</li>
+    <li><code>public/assets/audio/footstep.mp3</code> - Soft tapping sound</li>
+    <li><code>public/assets/audio/explosion.mp3</code> - Loud boom sound</li>
+  </ul>
+
+  <script>
+    function generateCircle(id, color, radius) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+      
+      // Draw circle
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(width/2, height/2, radius || width/2 - 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    
+    function generateSquare(id, color) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw square
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    
+    function generateRect(id, color, width, height) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw rectangle
+      ctx.fillStyle = color;
+      ctx.fillRect(0, 0, width, height);
+    }
+    
+    function generateWindow(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+      
+      // Draw window frame
+      ctx.fillStyle = '#555555';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Draw glass
+      ctx.fillStyle = '#aaddff';
+      ctx.fillRect(4, 4, width - 8, height - 8);
+      
+      // Draw window dividers
+      ctx.fillStyle = '#555555';
+      ctx.fillRect(width/2 - 1, 4, 2, height - 8);
+      ctx.fillRect(4, height/2 - 1, width - 8, 2);
+    }
+    
+    function generateVent(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+      
+      // Draw vent background
+      ctx.fillStyle = '#333333';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Draw vent slats
+      ctx.fillStyle = '#111111';
+      for (let i = 4; i < height - 4; i += 6) {
+        ctx.fillRect(4, i, width - 8, 3);
+      }
+    }
+    
+    function generateCamera(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+      
+      // Draw camera body
+      ctx.fillStyle = '#222222';
+      ctx.beginPath();
+      ctx.arc(width/2, height/2, width/2 - 2, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Draw lens
+      ctx.fillStyle = '#000000';
+      ctx.beginPath();
+      ctx.arc(width/2, height/2, width/3, 0, Math.PI * 2);
+      ctx.fill();
+      
+      // Draw lens reflection
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.arc(width/2 - 2, height/2 - 2, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    
+    function generateAmmoIcon(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+      
+      // Draw bullet
+      ctx.fillStyle = '#ffcc00';
+      ctx.beginPath();
+      ctx.moveTo(width/2 - 4, 5);
+      ctx.lineTo(width/2 + 4, 5);
+      ctx.lineTo(width/2 + 4, height - 10);
+      ctx.lineTo(width/2 - 4, height - 10);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Draw bullet tip
+      ctx.fillStyle = '#ffcc00';
+      ctx.beginPath();
+      ctx.arc(width/2, 5, 4, 0, Math.PI, true);
+      ctx.closePath();
+      ctx.fill();
+      
+      // Draw bullet base
+      ctx.fillStyle = '#cc9900';
+      ctx.fillRect(width/2 - 5, height - 10, 10, 5);
+    }
+    
+    function generateLogo(id) {
+      const canvas = document.getElementById(id);
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, width, height);
+      
+      // Draw background
+      ctx.fillStyle = '#222222';
+      ctx.fillRect(0, 0, width, height);
+      
+      // Draw text
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 36px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('R6Siege-2D', width/2, height/2);
+    }
+  </script>
+</body>
+</html>

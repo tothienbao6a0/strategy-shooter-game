@@ -1,0 +1,26 @@
+{
+  "name": "r6siege-2d",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "howler": "^2.2.3",
+    "pathfinding": "^0.4.18",
+    "phaser": "^3.60.0",
+    "uuid": "^9.0.1",
+    "xstate": "^4.38.2"
+  },
+  "devDependencies": {
+    "@types/howler": "^2.2.7",
+    "@types/node": "^20.2.5",
+    "@types/pathfinding": "^0.0.6",
+    "@types/uuid": "^9.0.7",
+    "canvas": "^3.1.0",
+    "typescript": "^5.0.4",
+    "vite": "^4.3.9"
+  }
+}
